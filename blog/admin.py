@@ -1,4 +1,8 @@
 from django.contrib import admin
 from . import models
 # Register your models here.
-admin.site.register(models.Post)
+
+class AutherAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'status',)
+
+admin.site.register(models.Post, AutherAdmin)
