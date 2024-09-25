@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+
+{% block headBlock %}
+<title>{{ post.title }} | Blog</title>
+{% endblock headBlock %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <div class="container mt-3">
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Blog</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Post: {{ post.title }}</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Post details -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="display-4">{{ post.title }}</h1>
+            <p class="lead">By <strong>{{ post.author }}</strong> | Published on {{ post.publishDate }}</p>
+            <hr>
+            <p>{{ post.content }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+    

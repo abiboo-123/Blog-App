@@ -5,4 +5,9 @@ from . import models
 class AutherAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'status',)
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'seen',)
+
+admin.site.register(models.Contact, ContactAdmin)
+
 admin.site.register(models.Post, AutherAdmin)
