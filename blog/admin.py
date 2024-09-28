@@ -16,3 +16,5 @@ admin.site.register(models.Contact, ContactAdmin)
 admin.site.register(models.Post, AutherAdmin)
 
 admin.site.register(models.Comment, CommentAdmin)
+
+admin.site.register(models.Category)

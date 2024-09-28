@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block headBlock %}
+    <title >{{catList.cat}} posts</title>
+{% endblock headBlock %}
+
+{% block content %}
+
+
+<!-- Blog Content -->
+<div class="container mt-5">
+<!-- Page Title -->
+<div class="text-center mb-5">
+    <h1 class="display-4" style="text-transform: capitalize;">{{catList.cat}} Posts</h1>
+</div>
+
+<!-- Posts Loop -->
+<div class="row">
+    {% for post in catList.posts %}
+        <!-- {% if post.status == "published" %} -->
+        <div class="col-md-4 mb-4">
+            <!-- Post Card -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <!-- Post Title -->
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <!-- Post Author -->
+                    <p class="card-text text-muted">by {{ post.author }}</p>
+                    <a href="{% url 'post' post.id %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        <!-- {% endif %} -->
+    {% endfor %}
+</div>
+</div>
+
+{% endblock content %}

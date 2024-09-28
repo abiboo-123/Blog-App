@@ -1,6 +1,9 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from .models import Post, Contact, Comment
+from .models import Post, Contact, Comment, Category
 from .forms import contactForm, commentForm
+from django.views.generic import ListView
 # Create your views here.
 
 def index(request):
@@ -45,4 +48,23 @@ def postDetails(request, pk):
 
     content = {'post': post, 'comments': comments, 'comment_form': comment_form}
     return render(request, 'post_details.html', content) 
-     
+   
+   
+class CatListView(ListView):
+    
+    template_name = 'category.html'
+    context_object_name = 'catList'
+    
+    def get_queryset(self):
+        
+        content = {
+            'cat': self.kwargs['category'],
+            'posts': Post.objects.filter(category__name=self.kwargs['category']).filter(status='published')
+        }
+        
+        return content
+    
+def categories_processor(request):
+    categories = Category.objects.exclude(name='default')
+
+    return {'categories': categories}
