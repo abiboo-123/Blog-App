@@ -6,6 +6,7 @@
 
 {% block content %}
 
+<!-- Breadcrumb Navigation -->
 <nav aria-label="breadcrumb">
     <div class="container mt-3">
         <ol class="breadcrumb">
@@ -24,23 +25,27 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
+            <!-- Post Image -->
+            {% if post.image %}
+                <img src="{{ post.image.url }}" class="img-fluid mb-4" alt="{{ post.title }}">
+            {% endif %}
+            
+            <!-- Post Title -->
             <h1 class="display-4">{{ post.title }}</h1>
             <p class="lead">By <strong>{{ post.author }}</strong> | Published on {{ post.publishDate }}</p>
             <hr>
+            
+            <!-- Post Content -->
             <p>{{ post.content }}</p>
             
-            <!-- Display comments -->
+            <!-- Comments Section -->
             <div class="comments-section mt-5">
-                
                 {% with comments.count as total_comments %}
-                    
-                    <h3>
-                        {{ total_comments }} comment{{ total_comments|pluralize }}
-                    </h3>
-
+                    <h3>{{ total_comments }} comment{{ total_comments|pluralize }}</h3>
                 {% endwith %}
-                    
                 <hr>
+                
+                <!-- Comments Loop -->
                 {% for comment in comments %}
                     <div class="comment mb-3">
                         <p><strong>{{ comment.name }}</strong> ({{ comment.email }})</p>
@@ -53,7 +58,7 @@
                 {% endfor %}
             </div>
 
-            <!-- Comment form -->
+            <!-- Comment Form -->
             <div class="comment-form mt-5">
                 <h3>Leave a Comment</h3>
                 <form method="POST" class="mt-3">

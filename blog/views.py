@@ -48,8 +48,7 @@ def postDetails(request, pk):
 
     content = {'post': post, 'comments': comments, 'comment_form': comment_form}
     return render(request, 'post_details.html', content) 
-   
-   
+
 class CatListView(ListView):
     
     template_name = 'category.html'

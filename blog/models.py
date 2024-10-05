@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 
+def userDirPath(instance, filename):
+    return 'post/{0}/{1}'.format(instance.id, filename)
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     
@@ -28,6 +31,7 @@ class Post(models.Model):
     status =models.CharField(max_length=10, choices=options, default='draft')
     objects = models.Manager()
     mewmanager = NewManager()
+    image = models.ImageField(upload_to=userDirPath, default='posts/default.jpeg')
     
     class Meta():
         ordering = ('-publishDate', )
